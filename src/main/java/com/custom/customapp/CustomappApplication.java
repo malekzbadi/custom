@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class CustomappApplication {
 
-    @RequestMapping(value = "/message", method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String message(){
-        return "Hello world - what a cruel world!";
+        return "Hello world - what a cruel world!!";
     }
 
     public static void main(String[] args) {
