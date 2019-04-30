@@ -17,23 +17,23 @@ header {
     left: 50%;
     transform: translate(-50%,-50%);
     width: 500px;
-    height: 775px;
+    height: 600px;
     box-sizing: border-box;
     background: rgba(0,0,0,0.5);
-    padding:40px;
+    padding:30px;
 
 }
 
 h3{
     margin: 0;
-    padding: 0 0 20px;
-    font-size: 38px;
+    padding: 0 0 10px;
+    font-size: 32px;
     font-family: sans-serif;
     color: #ffffff;
 }
 
 p{
-    font-size: 20px;
+    font-size: 18px;
     color: #ffffff;
 }
 
@@ -45,7 +45,7 @@ p{
 }
 
 .form-area input,select{
-    margin-bottom:20px;
+    margin-bottom:10px;
     width: 100%;
 }
 
@@ -54,7 +54,7 @@ p{
     border-bottom: 1px solid #ffffff;
     background-color: transparent;
     outline: none;
-    height: 40px;
+    height: 30px;
     color: #ffffff;
 }
 
@@ -69,8 +69,8 @@ p{
 }
 
 .form-area select{
-    margin-top: 20px;
-    padding: 10px 0;
+    margin-top: 10px;
+    padding: 5px 0;
 }
 
 .form-area input[type=submit]{
@@ -79,6 +79,7 @@ p{
     outline: none;
     color: white;
     font-size: 15px;
+    margin-top: 10px;
     background-color: tomato;
     cursor: pointer;
 }
@@ -96,9 +97,9 @@ p{
 .main-nav li a{
     color: white;
     text-decoration: none;
-    padding: 5px 20px;
+    padding: 3px 15px;
     font-family: "Roboto", sans-serif;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 .main-nav li a:hover{
@@ -114,10 +115,4 @@ body{
     margin: auto;
 }
 
-h1{
-    color:white;
-    font-size: 70px;
-    text-align: center;
-    margin-top: 275px;
-}
 
