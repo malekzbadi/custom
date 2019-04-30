@@ -11,6 +11,78 @@ header {
     background-position: center;
 }
 
+.form-area{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 500px;
+    height: 775px;
+    box-sizing: border-box;
+    background: rgba(0,0,0,0.5);
+    padding:40px;
+
+}
+
+h3{
+    margin: 0;
+    padding: 0 0 20px;
+    font-size: 38px;
+    font-family: sans-serif;
+    color: #ffffff;
+}
+
+p{
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.form-area p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+.form-area input,select{
+    margin-bottom:20px;
+    width: 100%;
+}
+
+.form-area input[type=text], .form-area input[type=number], .form-area input[type=date]{
+    border: none;
+    border-bottom: 1px solid #ffffff;
+    background-color: transparent;
+    outline: none;
+    height: 40px;
+    color: #ffffff;
+}
+
+.form-area input[type=date]::-webkit-inner-spin-button,
+.form-area input[type=date]::-webkit-outer-spin-button{
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+::placeholder{
+    color: #ffffff;
+}
+
+.form-area select{
+    margin-top: 20px;
+    padding: 10px 0;
+}
+
+.form-area input[type=submit]{
+    border: none;
+    height: 40px;
+    outline: none;
+    color: white;
+    font-size: 15px;
+    background-color: tomato;
+    cursor: pointer;
+}
+
 .main-nav {
     float: right;
     list-style: none;
@@ -42,13 +114,6 @@ body{
     margin: auto;
 }
 
-.hero{
-    position: absolute;
-    width: 1200px;
-    margin-left: 0;
-    margin-top: 0;
-}
-
 h1{
     color:white;
     font-size: 70px;
@@ -56,34 +121,3 @@ h1{
     margin-top: 275px;
 }
 
-.button{
-    margin-top: 30px;
-    margin-left: 440px;
-}
-
-.btn{
-    border: 1px solid white;
-    padding: 10px 30px;
-    color: white;
-    text-decoration: none;
-    margin-right: 5px;
-    font-size: 12px;
-    text-transform: uppercase;
-
-}
-
-.btn-one{
-    font-family: "Roboto", sans-serif;
-}
-
-.btn-two{
-    font-family: "Roboto", sans-serif;
-}
-
-.btn-one:hover{
-    background-color: darkorange;
-}
-
-.btn-two:hover{
-    background-color: darkorange;
-}
