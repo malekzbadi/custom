@@ -5,114 +5,64 @@
 }
 
 header {
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("images/AccentureBackground.jpg");
-    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url("images/background.jpg");
+    height: 220vw;
     background-size: cover;
     background-position: center;
 }
 
-.form-area{
+
+.hero{
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    width: 500px;
-    height: 600px;
-    box-sizing: border-box;
-    background: rgba(0,0,0,0.5);
-    padding:30px;
-
+    width: 98vw;
+    margin-left: 0;
+    margin-top: 0;
 }
 
-h3{
-    margin: 0;
-    padding: 0 0 10px;
-    font-size: 32px;
-    font-family: sans-serif;
-    color: #ffffff;
+h1{
+    color:white;
+    font-size: 7vw;
+    font-family: monospace;
+    text-align: center;
+    margin-top: 20vw;
+    margin-bottom: 6vw;
 }
 
-p{
-    font-size: 18px;
-    color: #ffffff;
+.button{
+    margin-top: 6vw;
+    margin-bottom: 6vw;
+    margin-left: 24vw;
 }
 
-.form-area p{
-    margin: 0;
-    padding: 0;
-    font-weight: bold;
-    color: #ffffff;
-}
-
-.form-area input,select{
-    margin-bottom:10px;
-    width: 100%;
-}
-
-.form-area input[type=text], .form-area input[type=number], .form-area input[type=date]{
-    border: none;
-    border-bottom: 1px solid #ffffff;
-    background-color: transparent;
-    outline: none;
-    height: 30px;
-    color: #ffffff;
-}
-
-.form-area input[type=date]::-webkit-inner-spin-button,
-.form-area input[type=date]::-webkit-outer-spin-button{
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-::placeholder{
-    color: #ffffff;
-}
-
-.form-area select{
-    margin-top: 10px;
-    padding: 5px 0;
-}
-
-.form-area input[type=submit]{
-    border: none;
-    height: 40px;
-    outline: none;
-    color: white;
-    font-size: 15px;
-    margin-top: 10px;
-    background-color: tomato;
-    cursor: pointer;
-}
-
-.main-nav {
-    float: right;
-    list-style: none;
-    margin-top: 30px;
-}
-
-.main-nav li{
-    display: inline-block;
-}
-
-.main-nav li a{
+.btn{
+    border: 1px solid white;
+    padding: 2vw 2vw;
     color: white;
     text-decoration: none;
-    padding: 3px 15px;
-    font-family: "Roboto", sans-serif;
-    font-size: 12px;
+    margin-right: 4vw;
+    font-size: 72px;
+    text-transform: uppercase;
+    position: center;
 }
 
-.main-nav li a:hover{
-    border: 1px solid white;
+.btn-one:hover{
+    background-color: darkorange;
 }
 
-body{
-    font-family: monospace;
+.btn-two:hover{
+    background-color: darkorange;
 }
 
-.row{
-    max-width: 1600px;
-    margin: auto;
+.btn-three:hover{
+    background-color: darkorange;
+}
+
+.btn-four:hover{
+    background-color: darkorange;
 }
 
 
+.btn-five:hover{
+    background-color: darkorange;
+    content: 'GREAT!';
+}
