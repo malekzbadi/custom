@@ -1,35 +1,36 @@
-*
-{
-    margin: 0;
-    padding: 0;
-}
-
 .bgimage {
-    width:100%;
-    height:1000px;
+    height: 100vh;
     background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url("images/background.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size:cover;
     background-attachment: fixed;
 }
+
+.nopadding {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
 .bgimage h1 {
     color:white;
     font-size: 8vw;
     font-family: monospace;
-    margin-top: 15vw;
-    text-shadow:2px 2px #333;
+    margin-top: 7.5% !important;
+    text-shadow:2px 2px #333
 }
 
 #score-button{
-    border: 1px solid #005cbf;
+    border-color: white;
     padding: 2vw 2vw;
     color: #005cbf;
+    background-color: #80bdff;
     text-decoration: none;
-    margin-right: 3vw;
-    font-size: 72px;
+    margin-left: 1.5vw;
+    margin-right: 1.5vw;
+    font-size: 24px;
 }
 
 #score-button:hover{
-    background-color: aquamarine;
+    background-color: yellow;
 }
