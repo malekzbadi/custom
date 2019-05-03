@@ -8,15 +8,14 @@
     <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" type = "text/css">
     <link href="/bootstrap/css/bootstrap-grid.css" rel="stylesheet" type = "text/css">
     <link href="/bootstrap/css/bootstrap-reboot.css" rel="stylesheet" type = "text/css">
+    <script src="js/myCode.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
 <section class="bgimage">
 
     <div class="col-sm nopadding">
-        <a class="weatherwidget-io" href="https://forecast7.com/en/40d71n74d01/new-york/" data-label_1="NEW YORK" data-label_2="WEATHER" data-theme="original" >NEW YORK WEATHER</a>
-        <script>
-            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-        </script>
+        <a class="weatherwidget-io" href="https://forecast7.com/en/59d3318d07/stockholm/" data-label_1="STOCKHOLM" data-label_2="WEATHER" data-theme="original" >STOCKHOLM WEATHER</a>
     </div>
 
     <div class="col-sm container-fluid nopadding">
@@ -27,11 +26,11 @@
 
     <div class="row nopadding">
         <div class="col-sm text-center">
-            <button type="button" id="score-button" class="btn btn-sq-lg">1</button>
-            <button type="button" id="score-button" class="btn btn-sq-lg">2</button>
-            <button type="button" id="score-button" class="btn btn-sq-lg">3</button>
-            <button type="button" id="score-button" class="btn btn-sq-lg">4</button>
-            <button type="button" id="score-button" class="btn btn-sq-lg">5</button>
+            <button type="button" id="score-button" class="btn btn-sq-lg" onclick="firstButton()">1</button>
+             <button type="button" id="score-button" class="btn btn-sq-lg" onclick="secondButton()">2</button>
+            <button type="button" id="score-button" class="btn btn-sq-lg" onclick="thirdButton()">3</button>
+            <button type="button" id="score-button" class="btn btn-sq-lg" onclick="fourthButton()">4</button>
+            <button type="button" id="score-button" class="btn btn-sq-lg" onclick="fifthButton()">5</button>
         </div>
     </div>
 
