@@ -1,6 +1,6 @@
 .bgimage {
     height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url("images/background.jpg");
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("images/AccentureBackground.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size:cover;
@@ -12,19 +12,26 @@
     margin: 0 !important;
 }
 
+#bar-chart-horizontal {
+    position: absolute;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+}
+
+
 .bgimage h1 {
-    color:white;
-    font-size: 8vw;
-    font-family: monospace;
-    margin-top: 7.5% !important;
+    color:lightgray;
+    font-size: 6vw;
+    font-family: sans-serif;
+    margin-top: 5% !important;
     text-shadow:2px 2px #333
 }
 
 #score-button{
-    border-color: white;
+    border-color: lightgray;
     padding: 2vw 2vw;
-    color: #005cbf;
-    background-color: #80bdff;
+    color: lightgray;
+    background-color: transparent;
     text-decoration: none;
     margin-left: 1.5vw;
     margin-right: 1.5vw;
@@ -32,5 +39,5 @@
 }
 
 #score-button:hover{
-    background-color: aquamarine;
+    background-color: salmon;
 }

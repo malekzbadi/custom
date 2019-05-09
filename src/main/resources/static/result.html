@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" content="width=device-width, initial-scale=1.0">
+    <title>Accenture - Result</title>
+    <link href="/style.css" rel="stylesheet" type = "text/css">
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet" type = "text/css">
+    <link href="/bootstrap/css/bootstrap-grid.css" rel="stylesheet" type = "text/css">
+    <link href="/bootstrap/css/bootstrap-reboot.css" rel="stylesheet" type = "text/css">
+    <script src="myCode.js"></script>
+    <script src="charts/Chart.min.js"></script>
+</head>
+<body>
+<section class="bgimage">
+    <div class="col-sm nopadding">
+        <a class="weatherwidget-io" href="https://forecast7.com/en/59d3318d07/stockholm/" data-label_1="STOCKHOLM" data-label_2="WEATHER" data-theme="dark" >STOCKHOLM WEATHER</a>
+    </div>
+
+    <div class="col-sm container-fluid nopadding">
+        <div class="col-sm text-center">
+            <h1>Avrage feeling at Accenture today!</h1>
+        </div>
+    </div>
+
+    <canvas id="bar-chart-horizontal" width="10" height="2" onload="createGraph()"></canvas>
+
+    <script>
+        new Chart(document.getElementById("bar-chart-horizontal"), {
+            type: 'horizontalBar',
+            data: {
+                labels: ["Perfect", "Good", "Moderate", "Bad", "Very bad"],
+                label: {
+                    fill: '#fff'
+                },
+                datasets: [
+                    {
+                        label: "Number of votes",
+                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                        data: [2478,5267,734,784,433]
+                    }
+                ]
+            },
+            options: {
+                legend: { display: false },
+                title: {
+                    display: false,
+                    text: 'Predicted world population (millions) in 2050'
+                }
+            }
+        });
+    </script>
+</section>
+</body>
+</html>

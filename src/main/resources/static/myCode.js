@@ -17,7 +17,6 @@ function fourthButton() {
     ipLookUp(4);
 }
 
-
 function fifthButton() {
     ipLookUp(5);
 }
@@ -33,11 +32,13 @@ function ipLookUp (number) {
         .then(
             function success(response) {
                 //remove console logs when finished this section
+                changePage("result.html")
                 console.log('User\'s Location Data is ', response);
                 vote = number;
                 console.log(uuid);
                 console.log(vote);
                 console.log(dateTime);
+                console.log(location);
                 country = response.country;
                 city = response.city;
             },
@@ -67,3 +68,10 @@ function dateFormat(){
     var milSec = date.getMilliseconds();
     return year + "-" + month + "-" + day + "T" + hour + ":" + min + ":" + sec + "." + milSec;
 }
+
+function changePage(HTMLPage) {
+    window.location = HTMLPage;
+
+}
+
+
