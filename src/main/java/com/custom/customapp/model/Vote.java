@@ -3,20 +3,31 @@ package com.custom.customapp.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.tomcat.jni.Local;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@Entity
 public class Vote {
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Column
     private final UUID id;
     @NotBlank
+    @Column
     private final UUID userId;
+    @Column
     private final String country;
+    @Column
     private final String city;
+    @Column
     @NotBlank
     private final Integer happyScore;
+    @Column
     @NotBlank
     private final LocalDateTime datetime;
+    @Column
     private final UUID groupId;
 
     public Vote(@JsonProperty("id") UUID id,
