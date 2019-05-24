@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,17 +18,22 @@ public class MainController {
     private VoteRepository voteRepository;
 
     @PostMapping(path="/addVote") // Map ONLY GET Requests
-    public @ResponseBody String addNewVote (@RequestParam UUID userId
+    public @ResponseBody String addNewVote (@RequestParam String userId
             , @RequestParam String country
             , @RequestParam String city
             , @RequestParam Integer happyScore
-            , @RequestParam LocalDateTime datetime
-            , @RequestParam(required = false) UUID groupId) {
+            , @RequestParam String datetime) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
+        System.out.println(userId);
+        System.out.println(country);
+        System.out.println(city);
+        System.out.println(happyScore);
+        System.out.println(datetime);
         UUID id = UUID.randomUUID();
-        Vote n = new Vote(id, userId, country, city, happyScore, datetime, groupId);
+        UUID userIdType = UUID.fromString(userId);
+        Vote n = new Vote(id, userIdType, country, city, happyScore, datetime);
         voteRepository.save(n);
         return "Saved";
     }
@@ -64,11 +67,6 @@ public class MainController {
     @GetMapping(path="candy/{userId}")
     public @ResponseBody List<Vote> getVoteByUserId(@PathVariable("userId") UUID userId){
         return voteRepository.getVoteByUserId(userId);
-    }
-
-    @GetMapping(path="groupId/{groudId}")
-    public @ResponseBody List<Vote> getVoteByGroupId(@PathVariable("groupId") UUID groupId){
-        return voteRepository.getVoteByGroupId(groupId);
     }
 
     @DeleteMapping(path="{id}")

@@ -22,10 +22,14 @@ function fifthButton() {
 }
 
 function ipLookUp (number) {
-    var dateTime = dateFormat();
+    var datetime;
     var vote;
     var country;
     var city;
+
+    var d = new Date();
+    datetime = d.getFullYear().toString() + "-" + (d.getMonth()+1).toString() + "-" + d.getDate().toString() + "T" + d.getHours().toString() + ":" + d.getMinutes().toString() + ":" + d.getSeconds().toString();
+
 
     $.ajax('http://ip-api.com/json')
         .then(
@@ -35,7 +39,7 @@ function ipLookUp (number) {
                 console.log('User\'s Location Data is ', response);
                 vote = number;
                 console.log(vote);
-                console.log(dateTime);
+                console.log(datetime);
                 console.log(location);
                 country = response.country;
                 city = response.city;
@@ -43,20 +47,24 @@ function ipLookUp (number) {
                 setUserIdCookie();
 
                 var userId = getCookie("userId");
-                var groupId = getCookie("groupId");
                 var Url = 'http://localhost:8080/api/v1/vote/addVote';
                 var data = {
                     userId:userId,
                     country:country,
                     city:city,
                     happyScore:vote,
-                    datetime:dateTime,
-                    groupId:groupId
+                    datetime:datetime,
                 };
+                console.log(userId);
+                console.log(country);
+                console.log(city);
+                console.log(vote);
+                console.log(datetime);
                 $.ajax({
                     url: Url,
                     type: "POST",
                     data: data,
+                    dataType: "JSON",
                     success: function(result){
                         console.log(result);
                         console.log("-----Data Sent-----");
@@ -101,19 +109,12 @@ function changePage(HTMLPage) {
 
 function setUserIdCookie(){
     var userId = getCookie('userId');
-    if (userId == ''){
+    if (userId == '' || userId === undefined){
         var userId = uuidv4();
         setCookie('userId', userId, 3650);
     } else {
         console.log("Cookie is already set.");
     }
-}
-
-function setGroupIdCooke(){
-    //If the user clicks a link that his or her boss sent, add that project to his or her cookie.
-    //Get the group ID from the database.
-    var groupId = "something";
-    setCookie("groupId", groupId, 3650);
 }
 
 function setCookie(cname, cvalue, exdays) {
