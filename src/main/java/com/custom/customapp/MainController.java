@@ -20,16 +20,16 @@ public class MainController {
     private VoteRepository voteRepository;
 
     @PostMapping(path="/addVote") // Map ONLY GET Requests
-    public @ResponseBody String addNewVote (@RequestParam UUID id
-            , @RequestParam UUID userId
+    public @ResponseBody String addNewVote (@RequestParam UUID userId
             , @RequestParam String country
             , @RequestParam String city
             , @RequestParam Integer happyScore
             , @RequestParam LocalDateTime datetime
-            , @RequestParam UUID groupId) {
+            , @RequestParam(required = false) UUID groupId) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
+        UUID id = UUID.randomUUID();
         Vote n = new Vote(id, userId, country, city, happyScore, datetime, groupId);
         voteRepository.save(n);
         return "Saved";

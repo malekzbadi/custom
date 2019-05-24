@@ -22,7 +22,6 @@ function fifthButton() {
 }
 
 function ipLookUp (number) {
-    var uuid =  uuidv4();
     var dateTime = dateFormat();
     var vote;
     var country;
@@ -35,17 +34,44 @@ function ipLookUp (number) {
                 changePage("result.html")
                 console.log('User\'s Location Data is ', response);
                 vote = number;
-                console.log(uuid);
                 console.log(vote);
                 console.log(dateTime);
                 console.log(location);
                 country = response.country;
                 city = response.city;
+
+                setUserIdCookie();
+
+                var userId = getCookie("userId");
+                var groupId = getCookie("groupId");
+                var Url = 'http://localhost:8080/api/v1/vote/addVote';
+                var data = {
+                    userId:userId,
+                    country:country,
+                    city:city,
+                    happyScore:vote,
+                    datetime:dateTime,
+                    groupId:groupId
+                };
+                $.ajax({
+                    url: Url,
+                    type: "POST",
+                    data: data,
+                    success: function(result){
+                        console.log(result);
+                        console.log("-----Data Sent-----");
+                        console.log(data);
+                        console.log("-----Status-----");
+                        console.log(status);
+                    },
+                    error:function(error){
+                        console.log(error);
+                    }
+                });
             },
 
             function fail(data, status) {
-                console.log('Request failed.  Returned status of',
-                    status);
+                console.log('Request failed.  Returned status of', status);
             }
         );
 }
@@ -71,7 +97,47 @@ function dateFormat(){
 
 function changePage(HTMLPage) {
     window.location = HTMLPage;
-
 }
 
+function setUserIdCookie(){
+    var userId = getCookie('userId');
+    if (userId == ''){
+        var userId = uuidv4();
+        setCookie('userId', userId, 3650);
+    } else {
+        console.log("Cookie is already set.");
+    }
+}
 
+function setGroupIdCooke(){
+    //If the user clicks a link that his or her boss sent, add that project to his or her cookie.
+    //Get the group ID from the database.
+    var groupId = "something";
+    setCookie("groupId", groupId, 3650);
+}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    try {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+    }
+    catch(error) {
+        return "";
+    }
+}

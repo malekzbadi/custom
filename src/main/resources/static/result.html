@@ -9,6 +9,7 @@
     <link href="/bootstrap/css/bootstrap-reboot.css" rel="stylesheet" type = "text/css">
     <script src="myCode.js"></script>
     <script src="charts/Chart.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 <section class="bgimage">
@@ -25,6 +26,20 @@
     <canvas id="bar-chart-horizontal" width="10" height="2" onload="createGraph()"></canvas>
 
     <script>
+
+        $(document).ready(function(){
+            console.log("Some stuff is going on here");
+            $.ajax({
+                url: 'http://localhost:8080/api/v1/vote/allVotes',
+                type: "GET",
+                success: function(result){
+                    console.log(result);
+                },
+                error: function(error){
+                    console.log(error);
+                }
+            })
+        })
         new Chart(document.getElementById("bar-chart-horizontal"), {
             type: 'horizontalBar',
             data: {
@@ -52,3 +67,4 @@
 </section>
 </body>
 </html>
+
