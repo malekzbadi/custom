@@ -26,7 +26,11 @@
     <canvas id="bar-chart-horizontal" width="10" height="2" onload="createGraph()"></canvas>
 
     <script>
-
+        var voteOne = 0;
+        var voteTwo = 0;
+        var voteThree = 0;
+        var voteFour = 0;
+        var voteFive = 0;
         $(document).ready(function(){
             console.log("Some stuff is going on here");
             $.ajax({
@@ -34,34 +38,62 @@
                 type: "GET",
                 success: function(result){
                     console.log(result);
+                    var resultLength = result.length;
+                    for (var i = 0; i < resultLength; i++) {
+                        console.log(result[i]['happyScore']);
+                        switch(result[i]['happyScore']){
+                            case 1:
+                                voteOne++;
+                                break;
+                            case 2:
+                                voteTwo++;
+                                break;
+                            case 3:
+                                voteThree++;
+                                break;
+                            case 4:
+                                voteFour++;
+                                break;
+                            case 5:
+                                voteFive++;
+                                break;
+                            default:
+                                console.log("Invalid vote");
+                        }
+                    }
                 },
                 error: function(error){
                     console.log(error);
                 }
             })
-        })
-        new Chart(document.getElementById("bar-chart-horizontal"), {
-            type: 'horizontalBar',
-            data: {
-                labels: ["Perfect", "Good", "Moderate", "Bad", "Very bad"],
-                label: {
-                    fill: '#fff'
+            console.log(voteTwo);
+
+            console.log("what");
+            console.log(voteTwo);
+            console.log("done");
+            new Chart(document.getElementById("bar-chart-horizontal"), {
+                type: 'horizontalBar',
+                data: {
+                    labels: ["Perfect", "Good", "Moderate", "Bad", "Very bad"],
+                    label: {
+                        fill: '#fff'
+                    },
+                    datasets: [
+                        {
+                            label: "Number of votes",
+                            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+                            data: [voteOne,voteTwo,voteThree,voteFour,voteFive]
+                        }
+                    ]
                 },
-                datasets: [
-                    {
-                        label: "Number of votes",
-                        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                        data: [2478,5267,734,784,433]
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: false,
+                        text: 'Predicted world population (millions) in 2050'
                     }
-                ]
-            },
-            options: {
-                legend: { display: false },
-                title: {
-                    display: false,
-                    text: 'Predicted world population (millions) in 2050'
                 }
-            }
+            });
         });
     </script>
 </section>
