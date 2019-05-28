@@ -11,5 +11,4 @@ public class CustomappApplication {
 
         SpringApplication.run(CustomappApplication.class, args);
     }
-
 }

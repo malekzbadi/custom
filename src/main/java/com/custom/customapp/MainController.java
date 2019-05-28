@@ -9,6 +9,8 @@ import java.util.UUID;
 
 import com.custom.customapp.model.Vote;
 
+import static javafx.scene.input.KeyCode.T;
+
 @Controller    // This means that this class is a Controller
 @RequestMapping(path="api/v1/vote") // This means URL's start with /demo (after Application path)
 public class MainController {
@@ -26,22 +28,29 @@ public class MainController {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
 
-        System.out.println(userId);
-        System.out.println(country);
-        System.out.println(city);
-        System.out.println(happyScore);
-        System.out.println(datetime);
         UUID id = UUID.randomUUID();
         UUID userIdType = UUID.fromString(userId);
+        Iterable<Vote> todaysVotes = getVoteByDatetimeDay(datetime);
+        for(Vote vote: todaysVotes){
+            if(vote.userId.equals(userIdType)){
+                return "already_voted_today";
+            }
+        }
         Vote n = new Vote(id, userIdType, country, city, happyScore, datetime);
         voteRepository.save(n);
-        return "Saved";
+        return "success";
     }
 
     @GetMapping(path="/allVotes")
     public @ResponseBody Iterable<Vote> getAllVotes() {
         // This returns a JSON or XML with the users
         return voteRepository.findAll();
+    }
+
+    @GetMapping(path="date/{datetime}")
+    public @ResponseBody Iterable<Vote> getVoteByDatetimeDay(@PathVariable("datetime") String datetime){
+        String date = datetime.substring(0, datetime.indexOf("T")-1);
+        return voteRepository.findByDatetimeContaining(date);
     }
 
     @GetMapping(path="id/{id}")

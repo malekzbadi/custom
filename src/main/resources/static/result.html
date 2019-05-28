@@ -17,31 +17,44 @@
         <a class="weatherwidget-io" href="https://forecast7.com/en/59d3318d07/stockholm/" data-label_1="STOCKHOLM" data-label_2="WEATHER" data-theme="dark" >STOCKHOLM WEATHER</a>
     </div>
 
+    <div class="alert alert-danger alert_already_voted_today" role="alert">
+        Well darn it! You have already voted today.
+    </div>
+
     <div class="col-sm container-fluid nopadding">
         <div class="col-sm text-center">
-            <h1>Avrage feeling at Accenture today!</h1>
+            <h1>Average feeling at Accenture today!</h1>
         </div>
     </div>
 
     <canvas id="bar-chart-horizontal" width="10" height="2" onload="createGraph()"></canvas>
 
+
     <script>
-        var voteOne = 0;
-        var voteTwo = 0;
-        var voteThree = 0;
-        var voteFour = 0;
-        var voteFive = 0;
-        $(document).ready(function(){
-            console.log("Some stuff is going on here");
+        $(document).ready(function() {
+            $('.alert_already_voted_today').hide();
+            var status = findGetParameter('status');
+            if(status === 'already_voted_today'){
+                $('.alert_already_voted_today').show();
+            }
+            presentData(true);
+        });
+        function presentData(animation) {
+            var voteOne = 0;
+            var voteTwo = 0;
+            var voteThree = 0;
+            var voteFour = 0;
+            var voteFive = 0;
             $.ajax({
-                url: 'http://localhost:8080/api/v1/vote/allVotes',
+                url: '/api/v1/vote/allVotes',
                 type: "GET",
-                success: function(result){
+                async: false,
+                success: function (result) {
                     console.log(result);
                     var resultLength = result.length;
                     for (var i = 0; i < resultLength; i++) {
                         console.log(result[i]['happyScore']);
-                        switch(result[i]['happyScore']){
+                        switch (result[i]['happyScore']) {
                             case 1:
                                 voteOne++;
                                 break;
@@ -62,41 +75,92 @@
                         }
                     }
                 },
-                error: function(error){
+                error: function (error) {
                     console.log(error);
                 }
-            })
-            console.log(voteTwo);
-
-            console.log("what");
-            console.log(voteTwo);
-            console.log("done");
-            new Chart(document.getElementById("bar-chart-horizontal"), {
-                type: 'horizontalBar',
-                data: {
-                    labels: ["Perfect", "Good", "Moderate", "Bad", "Very bad"],
-                    label: {
-                        fill: '#fff'
-                    },
-                    datasets: [
-                        {
-                            label: "Number of votes",
-                            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-                            data: [voteOne,voteTwo,voteThree,voteFour,voteFive]
-                        }
-                    ]
-                },
-                options: {
-                    legend: { display: false },
-                    title: {
-                        display: false,
-                        text: 'Predicted world population (millions) in 2050'
-                    }
-                }
             });
-        });
+            if (animation === false){
+                new Chart(document.getElementById("bar-chart-horizontal"), {
+                    type: 'horizontalBar',
+                    data: {
+                        labels: ["Perfect", "Good", "Moderate", "Bad", "Very bad"],
+                        label: {
+                            fill: '#fff'
+                        },
+                        datasets: [
+                            {
+                                label: "Number of votes",
+                                backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                                data: [voteFive, voteFour, voteThree, voteTwo, voteOne]
+                            }
+                        ]
+                    },
+                    options: {
+                        animation: {
+                            duration: 0
+                        },
+                        scales: {
+                            xAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        },
+                        legend: {display: false},
+                        title: {
+                            display: false,
+                            text: 'Predicted world population (millions) in 2050'
+                        }
+                    }
+                });
+            }
+            else{
+                new Chart(document.getElementById("bar-chart-horizontal"), {
+                    type: 'horizontalBar',
+                    data: {
+                        labels: ["Perfect", "Good", "Moderate", "Bad", "Very bad"],
+                        label: {
+                            fill: '#fff'
+                        },
+                        datasets: [
+                            {
+                                label: "Number of votes",
+                                backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f", "#e8c3b9", "#c45850"],
+                                data: [voteFive, voteFour, voteThree, voteTwo, voteOne]
+                            }
+                        ]
+                    },
+                    options: {
+                        scales: {
+                            xAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        },
+                        legend: {display: false},
+                        title: {
+                            display: false,
+                            text: 'Predicted world population (millions) in 2050'
+                        }
+                    }
+                });
+            }
+        }
+        function findGetParameter(parameterName) {
+            var result = null,
+                tmp = [];
+            location.search
+                .substr(1)
+                .split("&")
+                .forEach(function (item) {
+                    tmp = item.split("=");
+                    if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+                });
+            return result;
+        }
+        var interval = setInterval(function(){presentData(false);}, 1000);
     </script>
 </section>
 </body>
 </html>
-

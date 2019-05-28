@@ -14,7 +14,7 @@ public class Vote {
     @Column
     private final UUID id;
     @Column
-    private final UUID userId;
+    public final UUID userId;
     @Column
     private final String country;
     @Column

@@ -19,4 +19,6 @@ public interface VoteRepository extends CrudRepository<Vote, Integer> {
     List<Vote> getVoteByHappyScore(Integer happyScore);
 
     List<Vote> getVoteByUserId(UUID userId);
+
+    List<Vote> findByDatetimeContaining(String datetime);
 }

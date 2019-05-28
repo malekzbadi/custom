@@ -28,19 +28,16 @@ function ipLookUp (number) {
     var city;
 
     var d = new Date();
-    datetime = d.getFullYear().toString() + "-" + (d.getMonth()+1).toString() + "-" + d.getDate().toString() + "T" + d.getHours().toString() + ":" + d.getMinutes().toString() + ":" + d.getSeconds().toString();
+    datetime = dateFormat();
 
+    var responseStatusString;
 
     $.ajax('http://ip-api.com/json')
         .then(
             function success(response) {
                 //remove console logs when finished this section
-                changePage("result.html")
                 console.log('User\'s Location Data is ', response);
                 vote = number;
-                console.log(vote);
-                console.log(datetime);
-                console.log(location);
                 country = response.country;
                 city = response.city;
 
@@ -55,29 +52,22 @@ function ipLookUp (number) {
                     happyScore:vote,
                     datetime:datetime,
                 };
-                console.log(userId);
-                console.log(country);
-                console.log(city);
-                console.log(vote);
-                console.log(datetime);
                 $.ajax({
                     url: Url,
                     type: "POST",
                     data: data,
+                    async: false,
                     dataType: "JSON",
                     success: function(result){
-                        console.log(result);
-                        console.log("-----Data Sent-----");
-                        console.log(data);
-                        console.log("-----Status-----");
-                        console.log(status);
+                        responseStatusString = result['responseText'];
                     },
-                    error:function(error){
-                        console.log(error);
+                    error: function(error){
+                        responseStatusString = error['responseText'];
                     }
                 });
+                var url = "result.html?status=" + responseStatusString;
+                changePage(url);
             },
-
             function fail(data, status) {
                 console.log('Request failed.  Returned status of', status);
             }
@@ -94,13 +84,19 @@ function uuidv4() {
 function dateFormat(){
     var date = new Date();
     var year = date.getFullYear();
-    var month = "0" + (date.getMonth() + 1);
-    var day =  "0" + date.getDate();
+    var month = date.getMonth() + 1;
+    var day =  date.getDate();
     var hour = date.getHours();
     var min = date.getMinutes();
     var sec = date.getSeconds();
-    var milSec = date.getMilliseconds();
-    return year + "-" + month + "-" + day + "T" + hour + ":" + min + ":" + sec + "." + milSec;
+
+    if (month < 10){
+        month = "0" + month;
+    }
+    if (day < 10){
+        day = "0" + day;
+    }
+    return year + "-" + month + "-" + day + "T" + hour + ":" + min + ":" + sec;
 }
 
 function changePage(HTMLPage) {
