@@ -9,8 +9,6 @@ import java.util.UUID;
 
 import com.custom.customapp.model.Vote;
 
-import static javafx.scene.input.KeyCode.T;
-
 @Controller    // This means that this class is a Controller
 @RequestMapping(path="api/v1/vote") // This means URL's start with /demo (after Application path)
 public class MainController {
