@@ -44,7 +44,7 @@ function ipLookUp (number) {
                 setUserIdCookie();
 
                 var userId = getCookie("userId");
-                var Url = 'http://localhost:8080/api/v1/vote/addVote';
+                var Url = '/api/v1/vote/addVote';
                 var data = {
                     userId:userId,
                     country:country,
